@@ -58,7 +58,6 @@ const Button = ({
   return (
     <button className={btnClassName}>
       {children}
-      <i>dsdsd</i>
       {(icon || as === 'icon button') && <Icon name={icon} />}
     </button>
   );

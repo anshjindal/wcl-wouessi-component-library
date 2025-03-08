@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import Button, { ButtonProps } from "./Button";
-
+import { iconList } from "../_export-helpers"; 
 // const ExampleIcon = () => <span role="img" aria-label="star">⭐</span>;
 
 
@@ -55,6 +55,25 @@ Large.args = {
   block: false,
 };
 
+// Updated to Incorporate Icon Story for Buttons
+export const IconButton = Template.bind({});
+IconButton.args = {
+  as: 'icon button',
+  icon: Object.keys(iconList)[0] as keyof typeof iconList, 
+};
+
+IconButton.argTypes = {
+  icon: {
+    control: { type: 'select' },
+    options: Object.keys(iconList) as (keyof typeof iconList)[], 
+  },
+  children: { table: { disable: true } },
+  variant: { table: { disable: true } }, 
+  size: { table: { disable: true } }, 
+  block: { table: { disable: true } }, 
+};
+
+
 // export const ButtonWithIcon: Story = {
 //   args: {
 //     children: 'Button with Icon',
@@ -62,3 +81,4 @@ Large.args = {
 //     icon: <ExampleIcon />, 
 //   },
 // };
+

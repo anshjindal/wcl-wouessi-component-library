@@ -19,6 +19,14 @@
   background-color: var(--primary-500);
 }
 
+.primary:active {
+  background-color: var(--primary-700);
+}
+
+.primary:focus {
+  outline: unset;
+}
+
 .secondary {
   background-color: var(--neutral-100);
   border: 1px solid var(--primary-700);
@@ -30,6 +38,14 @@
   color: var(--neutral-100);
 }
 
+.secondary:active {
+  background-color: var(--primary-700);
+}
+
+.secondary:focus {
+  outline: unset;
+}
+
 .tertiary {
   background-color: transparent;
   color: var(--neutral-900);
@@ -39,7 +55,15 @@
 
 .tertiary:hover {
   border: 1px solid var(--neutral-100);
-  color: var(--primary-600);
+  color: var(--primary-500);
+}
+
+.tertiary:active {
+  color: var(--primary-700);
+}
+
+.tertiary:focus {
+  outline: unset;
 }
 
 .small {
@@ -47,7 +71,6 @@
   font-size: 1;
   gap: 1;
   height: 1;
-
 }
 
 .medium {
@@ -55,7 +78,6 @@
   font-size: 1;
   gap: 1;
   height: 1;
-
 }
 
 .large {
@@ -63,21 +85,20 @@
   font-size: 1;
   gap: 1;
   height: 1;
-
 }
 
-// Icon Button Styles 
+// Icon Button Styles
 .btnIcon {
-  width: 56px; 
-  height: 56px; 
-  border-radius: 50%; 
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0; 
-  background-color: white; 
+  padding: 0;
+  background-color: white;
   border: none;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
 
   &:hover {
@@ -92,13 +113,13 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 0px 3px rgba(0, 0, 255, 0.2); 
+    box-shadow: 0px 0px 0px 3px rgba(0, 0, 255, 0.2);
   }
 
   svg {
-    width: 24px; 
+    width: 24px;
     height: 24px;
-    fill: #2B03A2; 
+    fill: #2b03a2;
   }
 }
 
@@ -121,7 +142,7 @@
 // }
 
 // .largeIcon {
-//   width: 150px; 
+//   width: 150px;
 //   height: 150px;
-//   fill: #2B03A2; 
+//   fill: #2B03A2;
 // }

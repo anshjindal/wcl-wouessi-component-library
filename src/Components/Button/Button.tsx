@@ -1,9 +1,8 @@
-import { ReactNode } from 'react';
-// import clsx from 'clsx'; 
-import { Icon } from '../Icon';
-import { iconList } from '../_export-helpers';
-import styles from './Button.module.scss';
-
+import { ReactNode } from "react";
+import clsx from "clsx";
+import { Icon } from "../Icon";
+import { iconList } from "../_export-helpers";
+import styles from "./Button.module.scss";
 
 /**
  * TODO:
@@ -13,62 +12,91 @@ import styles from './Button.module.scss';
  * - Accessibility
  */
 
-
 /**
- * RULES
- * ------------
- * 1) <Icon /> component is optional, but is rendered automatically if as === 'icon button' 
- * 
+ * The Button component is highly versatile and can be used as a <b>button</b>, a <b>button icon</b>, or a <b>link</b>.
+ *
  */
-const Button = ({ 
-  children, 
-  hasIcon, 
-  className = '', 
-  variant = 'primary', 
+const Button = ({
+  children,
+  hasIcon,
+  className = "",
+  variant = "primary",
   isBlock = false,
-  as = 'button',
-  size = 'medium',
-  href
+  as = "button",
+  size = "medium",
+  href,
+  label,
 }: ButtonProps) => {
+  const blockClass = isBlock ? styles.block : ""; // Assign block class if button is a block
+  const btnIconTransformClass = as === "icon button" ? styles.btnIcon : "";
+  let btnVariantClass = "";
+  let btnSizeClass = "";
 
-  const blockClass              = isBlock ? styles.block : ''; // Assign block class if button is a block
-  const btnIconTransformClass   = as === 'icon button' ? styles.btnIcon : '';
-  let btnVariantClass           = '';
-  let btnSizeClass              = '';
-
-  switch(variant) { // Compute the right variant styling
-    case 'primary': btnVariantClass = styles.primary; break;
-    case 'secondary': btnVariantClass = styles.secondary; break;
-    case 'tertiary': btnVariantClass = styles.tertiary; break;
+  switch (
+    variant // Compute the right variant styling
+  ) {
+    case "primary":
+      btnVariantClass = styles.primary;
+      break;
+    case "secondary":
+      btnVariantClass = styles.secondary;
+      break;
+    case "tertiary":
+      btnVariantClass = styles.tertiary;
+      break;
   }
 
-  switch(size) {  // Compute the right size styling
-    case 'small': btnSizeClass = styles.small; break;
-    case 'medium': btnSizeClass = styles.medium; break;
-    case 'large': btnSizeClass = styles.large; break;
+  switch (
+    size // Compute the right size styling
+  ) {
+    case "small":
+      btnSizeClass = styles.small;
+      break;
+    case "medium":
+      btnSizeClass = styles.medium;
+      break;
+    case "large":
+      btnSizeClass = styles.large;
+      break;
   }
 
-  // Combine all classes into 1
-  const btnClassName = `btn 
-                        ${blockClass} 
-                        ${btnVariantClass} 
-                        ${btnSizeClass} 
-                        ${btnIconTransformClass} 
-                        ${className}`;  
-                        
+  // Rendering a link
+  if (as === "link") {
+    return (
+      <a href={href} className={className}>
+        {children}
+      </a>
+    );
+  } else {
+    // Rendering a button
+    // Combine button classes
+    const btnClassName = `btn 
+                          ${btnVariantClass} 
+                          ${btnSizeClass} 
+                          ${className}`;
 
-  // // RENDER ANCHOR HERE 
-  if (as === 'link') {
-    return <a href={href} className={btnClassName}>{children}</a>;
+    // Rendering a button icon
+    if (as === "icon button") {
+      return (
+        <button
+          className={clsx(btnClassName, btnIconTransformClass)}
+          aria-label={label}
+        >
+          <Icon name={hasIcon} aria-hidden="true" />
+        </button>
+      );
+    }
+
+    // Rendering a button
+    else {
+      return (
+        <button className={clsx(btnClassName, blockClass)}>
+          {children}
+          {hasIcon && <Icon name={hasIcon} />}
+        </button>
+      );
+    }
   }
-  // }
-
-  return (
-    <button className={btnClassName}>
-      {children}
-      {(hasIcon || as === 'icon button') && <Icon name={hasIcon} />}
-    </button>
-  );
 };
 
 export type ButtonProps = {
@@ -76,17 +104,20 @@ export type ButtonProps = {
   className?: string;
 
   /** Component's visual appearance by order of importance */
-  variant?: 'primary' | 'secondary' | 'tertiary';
+  variant?: "primary" | "secondary" | "tertiary";
 
   /** The component can be rendered as the following DOM elements: */
-  as?: 'button' | 'icon button' | 'link';
+  as?: "button" | "icon button" | "link";
 
   /** In case the component is a "button" or a "button icon", it can have the following sizes: */
-  size?: 'small' | 'medium' | 'large';  
-  isBlock?: boolean; 
+  size?: "small" | "medium" | "large";
+
+  /** For button icon only: Gives buttons a meaningful name for screen readers.  */
+  label?: string,
+
+  isBlock?: boolean;
   hasIcon?: keyof typeof iconList;
   href?: string; // String for links
 };
-
 
 export default Button;

@@ -9,7 +9,15 @@ export default {
   component: Button,
   argTypes: {
     children: { control: 'text' },
-    variant: { control: 'radio', options: ['primary', 'secondary', 'tertiary'] },
+    variant: { 
+      control: 'radio', 
+      options: ['primary', 'secondary', 'tertiary'],
+      description: 'Defines the visual style of the button. `primary` is the default action, `secondary` is a less prominent action, and `tertiary` is for subtle actions.',
+      table: {
+        type: { summary: 'primary | secondary | tertiary' }, // Shows in Docs table
+        defaultValue: { summary: 'primary' }, // Shows default value in Docs
+      },
+    },
     hasIcon: { control: 'object' }, 
     href: {
       control: "text",

@@ -19,6 +19,14 @@ import "../src/App.css"; // Ensure global styles are loaded
       padding: 3rem;
       box-sizing: border-box;
     }
+    
+    #storybook-root[hidden="true"] {
+      display: none;
+    }
+
+    .docs-story {
+      padding: 2rem;
+    }
   `;
   document.head.appendChild(style);
 })();

@@ -74,11 +74,17 @@ const Button = ({
 export type ButtonProps = {
   children: ReactNode;
   className?: string;
+
+  /** Component's visual appearance by order of importance */
   variant?: 'primary' | 'secondary' | 'tertiary';
-  isBlock?: boolean; 
-  as?: 'button' | 'icon button' | 'link';  // Added "link" option
-  hasIcon?: keyof typeof iconList;
+
+  /** The component can be rendered as the following DOM elements: */
+  as?: 'button' | 'icon button' | 'link';
+
+  /** In case the component is a "button" or a "button icon", it can have the following sizes: */
   size?: 'small' | 'medium' | 'large';  
+  isBlock?: boolean; 
+  hasIcon?: keyof typeof iconList;
   href?: string; // String for links
 };
 

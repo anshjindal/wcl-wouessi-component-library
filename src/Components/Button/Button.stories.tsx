@@ -43,31 +43,16 @@ const Template: StoryFn<ButtonProps> = (args) => (
   <Button {...args}>{args.children}</Button>
 );
 
-export const Small = Template.bind({});
-Small.args = {
+//Button Story
+export const ButtonStory = Template.bind({});
+ButtonStory.args = {
   children: "Commit without compromise",
   variant: "primary",
-  size: 'small',
-  isBlock: false,
-};
-
-export const Medium = Template.bind({});
-Medium.args = {
-  children: "Commit without compromise",
-  variant: 'primary',
   size: 'medium',
   isBlock: false,
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  children: "Commit without compromise",
-  variant: 'primary',
-  size: 'large',
-  isBlock: false,
-};
-
-// Updated to Incorporate Icon Story for Buttons
+// Button Icon Story
 export const IconButton = Template.bind({});
 IconButton.args = {
   as: 'icon button',
@@ -85,6 +70,7 @@ IconButton.argTypes = {
   isBlock: { table: { disable: true } }, 
 };
 
+// Link Button Story
 export const LinkButton = Template.bind({});
 LinkButton.args = {
   children: "Test Link",

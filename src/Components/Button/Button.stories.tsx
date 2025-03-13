@@ -44,8 +44,8 @@ const Template: StoryFn<ButtonProps> = (args) => (
 );
 
 //Button Story
-export const ButtonStory = Template.bind({});
-ButtonStory.args = {
+export const ButtonDefault = Template.bind({});
+ButtonDefault.args = {
   children: "Commit without compromise",
   variant: "primary",
   size: 'medium',
@@ -53,13 +53,13 @@ ButtonStory.args = {
 };
 
 // Button Icon Story
-export const IconButton = Template.bind({});
-IconButton.args = {
+export const ButtonIcon = Template.bind({});
+ButtonIcon.args = {
   as: 'icon button',
   hasIcon: Object.keys(iconList)[0] as keyof typeof iconList, 
 };
 
-IconButton.argTypes = {
+ButtonIcon.argTypes = {
   hasIcon: {
     control: { type: 'select' },
     options: Object.keys(iconList) as (keyof typeof iconList)[], 

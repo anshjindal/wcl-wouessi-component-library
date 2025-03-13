@@ -18,6 +18,15 @@ export default {
         defaultValue: { summary: 'primary' }, // Shows default value in Docs
       },
     },
+    size: {
+      control: 'select', // This makes it a dropdown
+      options: ['small', 'medium', 'large'], // Dropdown options
+      description: "Sets the size of the button.",
+      table: {
+        type: { summary: 'small | medium | large' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
     hasIcon: { control: 'object' }, 
     href: {
       control: "text",

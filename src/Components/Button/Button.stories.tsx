@@ -18,6 +18,15 @@ export default {
         defaultValue: { summary: 'primary' }, // Shows default value in Docs
       },
     },
+    size: {
+      control: 'select', // This makes it a dropdown
+      options: ['small', 'medium', 'large'], // Dropdown options
+      description: "Sets the size of the button.",
+      table: {
+        type: { summary: 'small | medium | large' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
     hasIcon: { control: 'object' }, 
     href: {
       control: "text",
@@ -43,38 +52,23 @@ const Template: StoryFn<ButtonProps> = (args) => (
   <Button {...args}>{args.children}</Button>
 );
 
-export const Small = Template.bind({});
-Small.args = {
+//Button Story
+export const ButtonDefault = Template.bind({});
+ButtonDefault.args = {
   children: "Commit without compromise",
   variant: "primary",
-  size: 'small',
-  isBlock: false,
-};
-
-export const Medium = Template.bind({});
-Medium.args = {
-  children: "Commit without compromise",
-  variant: 'primary',
   size: 'medium',
   isBlock: false,
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  children: "Commit without compromise",
-  variant: 'primary',
-  size: 'large',
-  isBlock: false,
-};
-
-// Updated to Incorporate Icon Story for Buttons
-export const IconButton = Template.bind({});
-IconButton.args = {
+// Button Icon Story
+export const ButtonIcon = Template.bind({});
+ButtonIcon.args = {
   as: 'icon button',
   hasIcon: Object.keys(iconList)[0] as keyof typeof iconList, 
 };
 
-IconButton.argTypes = {
+ButtonIcon.argTypes = {
   hasIcon: {
     control: { type: 'select' },
     options: Object.keys(iconList) as (keyof typeof iconList)[], 
@@ -85,6 +79,7 @@ IconButton.argTypes = {
   isBlock: { table: { disable: true } }, 
 };
 
+// Link Button Story
 export const LinkButton = Template.bind({});
 LinkButton.args = {
   children: "Test Link",

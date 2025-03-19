@@ -19,22 +19,24 @@ const Icon = ({
 
   // No rendering if the name is not provided
   if (!name) {
-    return;
+    return null;
   }
 
   // casting the icon by name
   const SvgIcon = iconList[name];
 
-  return (
-    <SvgIcon
-      className={`${styles.icon} ${className || ""}`}
-      width={size}
-      height={size}
-      fill={color}
-      role="img"
-      aria-label={`${name} icon`}
-    />
-  );
+  const noFillIcons = ["Arrow", "Search", "Warning", "Home"];
+
+  const iconProps = {
+    className: `${styles.icon} ${className || ""}`,
+    width: size,
+    height: size,
+    role: "img",
+    "aria-label": `${name} icon`,
+    ...(noFillIcons.includes(name) ? {} : { fill: color }),
+  };
+
+  return <SvgIcon {...iconProps} />;
 };
 
 

@@ -1,149 +1,215 @@
 @use "../../styles/colors";
+
+/* Base button styles */
 .btn {
   border: 1px solid var(--primary-700);
   border-radius: 30px;
-  padding: 8px 12px 8px 16px;
+  padding: 8px 11px 8px 16px;
   font-weight: normal;
   font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+  /* Disabled state for any variant */
+  &:disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+    color: #E5E0E0;
+  }
 }
 
+/* Full-width button */
 .block {
-  border: 30px solid orange !important;
   width: 100%;
 }
 
+/* --------------------------------
+   PRIMARY VARIANT
+-------------------------------- */
 .primary {
   background-color: var(--primary-700);
-}
-
-.primary:hover {
-  background-color: var(--primary-500);
-}
-
-.primary:active {
-  background-color: var(--primary-700);
-}
-
-.primary:focus {
-  outline: unset;
-}
-
-.secondary {
-  background-color: var(--neutral-100);
-  border: 1px solid var(--primary-700);
-  color: var(--primary-700);
-}
-
-.secondary:hover {
-  background-color: var(--primary-500);
   color: var(--neutral-100);
-}
 
-.secondary:active {
-  background-color: var(--primary-700);
-}
-
-.secondary:focus {
-  outline: unset;
-}
-
-.tertiary {
-  background-color: transparent;
-  color: var(--neutral-900);
-  border: 1px solid var(--neutral-100);
-  text-decoration: underline;
-}
-
-.tertiary:hover {
-  border: 1px solid var(--neutral-100);
-  color: var(--primary-500);
-}
-
-.tertiary:active {
-  color: var(--primary-700);
-}
-
-.tertiary:focus {
-  outline: unset;
-}
-
-.small {
-  padding: 1;
-  font-size: 1;
-  gap: 1;
-  height: 1;
-}
-
-.medium {
-  padding: 1;
-  font-size: 1;
-  gap: 1;
-  height: 1;
-}
-
-.large {
-  padding: 1;
-  font-size: 1;
-  gap: 1;
-  height: 1;
-}
-
-// Icon Button Styles
-.btnIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  background-color: white;
-  border: none;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease-in-out;
-
+  border-radius: 30px;
   &:hover {
-    background-color: #f5f5f5;
-    transform: scale(1.05);
+    background-color: var(--primary-500);
   }
 
   &:active {
-    background-color: #e0e0e0;
-    transform: scale(0.95);
+    /* Pressed state; darker than default */
+    background-color: var(--primary-800);
   }
 
   &:focus {
-    outline: none;
-    box-shadow: 0px 0px 0px 3px rgba(0, 0, 255, 0.2);
+    outline: 2px solid var(--primary-300);
+    outline-offset: 2px;
   }
 
-  svg {
-    width: 24px;
-    height: 24px;
-    fill: #2b03a2;
+  &:disabled,
+  &[disabled] {
+    /* Grayed-out appearance */
+    background-color: var(--neutral-300);
+    color: var(--neutral-600);
+    border-color: var(--neutral-300);
   }
 }
 
-//.btnIcon {
-//  border: 5px dashed chocolate;
-//}
+/* --------------------------------
+   SECONDARY VARIANT
+-------------------------------- */
+.secondary {
+  background-color: var(--neutral-100);
+  color: var(--primary-700);
+  border: 1px solid var(--primary-700);
+  border-radius: 30px;
 
-// .iconOnly {
-//   border: none;
-//   background: none;
-//   padding: 0;
-//   display: inline-flex;
-//   align-items: center;
-//   justify-content: center;
-// }
+  &:hover {
+    background-color: var(--primary-500);
+    color: var(--neutral-100);
+  }
 
-// .iconOnly:focus{
-//   outline: none;
-//   box-shadow: none;
-// }
+  &:active {
+    /* Pressed state */
+    background-color: var(--primary-800);
+    color: var(--neutral-100);
+  }
 
-// .largeIcon {
-//   width: 150px;
-//   height: 150px;
-//   fill: #2B03A2;
-// }
+  &:focus {
+    outline: 2px solid var(--primary-300);
+    outline-offset: 2px;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: var(--neutral-300);
+    color: var(--neutral-500);
+    border-color: var(--neutral-300);
+  }
+}
+
+/* --------------------------------
+   TERTIARY VARIANT
+-------------------------------- */
+.tertiary {
+  background-color: transparent;
+  color: var(--neutral-900);
+  text-decoration: underline;
+  border-radius: 30px;
+
+  &:hover {
+    color: var(--primary-500);
+    border-color: var(--neutral-100);
+  }
+
+  &:active {
+    color: var(--primary-700);
+  }
+
+  &:focus {
+    outline: 2px solid var(--primary-300);
+    outline-offset: 2px;
+  }
+
+  &:disabled,
+  &[disabled] {
+    color: var(--neutral-500);
+    border-color: var(--neutral-300);
+  }
+}
+
+/* --------------------------------
+   SIZE CLASSES
+-------------------------------- */
+.small {
+  padding: 4px 8px;
+  font-size: 12px;
+  gap: 4px;
+  height: auto;
+}
+
+.medium {
+  padding: 8px 16px;
+  font-size: 14px;
+  gap: 6px;
+  height: auto;
+}
+
+.large {
+  padding: 12px 24px;
+  font-size: 16px;
+  gap: 8px;
+  height: auto;
+}
+
+/* --------------------------------
+   ICON BUTTON STYLES
+-------------------------------- */
+.btnIcon {
+  /* Circular shape, centered content */
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+
+  /* Default background & shadow (optional) */
+  background-color: var(--neutral-100); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out,
+    fill 0.2s ease-in-out;
+
+  /* Default icon color */
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--neutral-900); 
+    transition: fill 0.2s ease-in-out;
+  }
+
+  /* Hover: subtle lift & slightly darker background */
+  &:hover {
+    background-color: var(--neutral-200); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* Pressed (Active): fill with brand color, icon goes white */
+  &:active {
+    background-color: var(--primary-700);
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    svg {
+      fill: var(--neutral-100);
+    }
+  }
+
+  /* Focus: remove default outline, optional focus ring */
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-200);
+  }
+
+  /* Disabled: grayed out, no interactions */
+  &:disabled,
+  &[disabled] {
+    background-color: var(--neutral-300);
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+
+    svg {
+      fill: var(--neutral-500);
+    }
+  }
+}
+

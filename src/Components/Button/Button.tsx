@@ -5,12 +5,26 @@ import { iconList } from "../_export-helpers";
 import styles from "./Button.module.scss";
 
 /**
- * TODO:
- * Performance optimization for:
- * - Rendering
- * - Algorythm
- * - Accessibility
+ * The Button component is highly versatile and can be used as a <b>button</b>, a <b>button icon</b>, or a <b>link</b>.
+ *
+ * @param {ButtonProps} props - The properties for the Button component.
+ * @param {ReactNode} props.children - The content of the button.
+ * @param {string} [props.className] - Additional CSS classes.
+ * @param {"primary" | "secondary" | "tertiary"} [props.variant="primary"] - Visual style of the button.
+ * @param {"button" | "icon button" | "link"} [props.as="button"] - Determines the HTML element to render.
+ * @param {"small" | "medium" | "large"} [props.size="medium"] - Size of the button.
+ * @param {string} [props.label] - Accessible label for icon buttons.
+ * @param {boolean} [props.isBlock=false] - If true, the button will take up the full width of its container.
+ * @param {keyof typeof iconList} [props.hasIcon] - The icon to display in the button (for icon buttons).
+ * @param {string} [props.href] - URL for the link (when rendered as a link).
+ *
+ * @example
+ * <Button variant="primary" size="medium">Click Me</Button>
+ *
+ * @remarks
+ * Pending performance optimizations include improvements in rendering efficiency and algorithm refinement.
  */
+
 
 /**
  * The Button component is highly versatile and can be used as a <b>button</b>, a <b>button icon</b>, or a <b>link</b>.
@@ -26,6 +40,7 @@ const Button = ({
   size = "medium",
   href,
   label,
+  disabled = false,
 }: ButtonProps) => {
   const blockClass = isBlock ? styles.block : ""; // Assign block class if button is a block
   const btnIconTransformClass = as === "icon button" ? styles.btnIcon : "";
@@ -63,13 +78,14 @@ const Button = ({
   // Rendering a link
   if (as === "link") {
     return (
-      <a href={href} className={className}>
+      <a href={href} className={clsx("btn", btnVariantClass, btnSizeClass, className)}
+      >
         {children}
       </a>
     );
   } else {
     // Rendering a button
-    // Combine button classes
+    // Combine button classes including variant, size, and any additional classes
     const btnClassName = `btn 
                           ${btnVariantClass} 
                           ${btnSizeClass} 
@@ -81,16 +97,19 @@ const Button = ({
         <button
           className={clsx(btnClassName, btnIconTransformClass)}
           aria-label={label}
+          disabled={disabled} 
         >
           <Icon name={hasIcon} aria-hidden="true" />
         </button>
       );
     }
 
-    // Rendering a button
+    // Rendering a regular button with an optional icon
     else {
       return (
-        <button className={clsx(btnClassName, blockClass)}>
+        <button className={clsx(btnClassName, blockClass)}
+        disabled={disabled} 
+        >
           {children}
           {hasIcon && <Icon name={hasIcon} />}
         </button>
@@ -100,7 +119,7 @@ const Button = ({
 };
 
 export type ButtonProps = {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 
   /** Component's visual appearance by order of importance */
@@ -116,8 +135,12 @@ export type ButtonProps = {
   label?: string,
 
   isBlock?: boolean;
+
   hasIcon?: keyof typeof iconList;
+  
   href?: string; // String for links
+
+  disabled?: boolean;
 };
 
 export default Button;

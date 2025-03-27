@@ -7,6 +7,14 @@ import { iconList } from "../_export-helpers";
 export default {
   title: "Components/Button",
   component: Button,
+  parameters: {
+    docs: {
+      description: {
+        component: 
+        "The Button component is a versatile element that can be rendered as a standard button, an icon button, or a link. Use the controls to adjust its variant, size, and behavior.",
+      },
+    },
+  },
   argTypes: {
     children: { control: 'text' },
     variant: { 
@@ -30,7 +38,7 @@ export default {
     hasIcon: { control: 'object' }, 
     href: {
       control: "text",
-      description: "URL for the link (only used when as='link')",
+      description: "URL for the link (only used when 'as' is 'link')",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: "undefined" },
@@ -39,7 +47,7 @@ export default {
     isBlock: {
       control: "boolean",
       defaultValue: false,
-      description: "---- isBlock description ----",
+      description: "If true, the button will take up the full width of its container. ",
       table: {
         type: { summary: "boolean" }, // Add type summary for documentation
         defaultValue: { summary: "false" }, // Optional: Show default value
@@ -52,7 +60,7 @@ const Template: StoryFn<ButtonProps> = (args) => (
   <Button {...args}>{args.children}</Button>
 );
 
-//Button Story
+// Standard Button Story
 export const ButtonDefault = Template.bind({});
 ButtonDefault.args = {
   children: "Commit without compromise",
@@ -61,7 +69,7 @@ ButtonDefault.args = {
   isBlock: false,
 };
 
-// Button Icon Story
+// Button Icon Story with adjusted controls
 export const ButtonIcon = Template.bind({});
 ButtonIcon.args = {
   as: 'icon button',
@@ -87,12 +95,13 @@ LinkButton.args = {
   href: "https://www.google.com", 
   className: "custom-link-class", 
 };
+export const DisabledButton = Template.bind({});
+DisabledButton.args = {
+  children: "Disabled Button",
+  variant: "primary",
+  size: "medium",
+  disabled: true,
+};
 
-// export const ButtonWithIcon: Story = {
-//   args: {
-//     children: 'Button with Icon',
-//     variant: 'primary',
-//     icon: <ExampleIcon />, 
-//   },
-// };
+
 

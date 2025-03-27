@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Button from './Button';
+import { iconList } from '../_export-helpers';
 
 import { vi } from 'vitest';
 
@@ -28,5 +29,16 @@ describe('Button Component', () => {
 
     await user.click(button);
     expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+
+  //Verify that an icon button renders with the correct aria-label for accessibility
+  test('renders icon button with correct aria-label', () => {
+    // Use the first key from iconList as a valid icon
+    const iconKey = Object.keys(iconList)[0] as keyof typeof iconList;
+    render(<Button as="icon button" hasIcon={iconKey} label="Icon Button" />);
+    // Check if the button has the aria-label attribute set to "Icon Button"
+    const iconButton = screen.getByRole('button', { name: /Icon Button/i });
+    expect(iconButton).toBeInTheDocument();
   });
 });
